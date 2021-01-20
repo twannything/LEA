@@ -1,4 +1,6 @@
 #pragma once
+#include <stdio.h>
+#include <string.h>
 
 #define k_len 128
 
@@ -15,4 +17,12 @@
 #endif
 
 
-int ROL(char x, int i);
+
+void enc_lea_128(unsigned char* p, unsigned int* rk, unsigned char* c);
+void dec_lea_128(unsigned int* c, unsigned int* rk, unsigned int* p);
+unsigned int ROL(unsigned int x, unsigned int i);
+unsigned int ROR(unsigned int x, unsigned int i);
+void round_enc_128(unsigned int* x, unsigned int* rk, unsigned int i, unsigned int* y);
+void round_dec_128(unsigned int* x, unsigned int* rk, unsigned int i, unsigned int* y);
+void enc_key_schedule_128(unsigned char* k, unsigned int* rk);
+void dec_key_schedule_128(unsigned char* k, unsigned int* rk);

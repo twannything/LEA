@@ -139,17 +139,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\Desktop\대학원\WD_40\Arithmetic.c" />
-    <ClCompile Include="..\..\..\..\Desktop\대학원\WD_40\Basic Operation.c" />
-    <ClCompile Include="..\..\..\..\Desktop\대학원\WD_40\test.c" />
     <ClCompile Include="lea.c" />
     <ClCompile Include="main.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\Desktop\대학원\WD_40\Arithmetic.h" />
-    <ClInclude Include="..\..\..\..\Desktop\대학원\WD_40\Basic Operation.h" />
-    <ClInclude Include="..\..\..\..\Desktop\대학원\WD_40\conf.h" />
-    <ClInclude Include="..\..\..\..\Desktop\대학원\WD_40\test.h" />
     <ClInclude Include="lea.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

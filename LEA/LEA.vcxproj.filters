@@ -15,15 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\Desktop\대학원\WD_40\Arithmetic.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Desktop\대학원\WD_40\Basic Operation.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Desktop\대학원\WD_40\test.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="lea.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -32,18 +23,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\Desktop\대학원\WD_40\Arithmetic.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Desktop\대학원\WD_40\Basic Operation.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Desktop\대학원\WD_40\conf.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Desktop\대학원\WD_40\test.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="lea.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
