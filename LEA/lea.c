@@ -11,7 +11,6 @@ void enc_lea(unsigned char* c, unsigned char* p, unsigned int* rk, unsigned int 
 	unsigned int x[4] = { NULL };
 	unsigned int tmp[4] = { NULL };
 	int nr = 0;
-
 	if (len == 128)
 		nr = 24;
 	else if (len == 192)
@@ -76,7 +75,7 @@ void enc_key_schedule(unsigned char* k, unsigned int* rk, unsigned int len) {
 		unsigned int T[4] = { 0x00, };
 
 		memcpy(T, k, 16);
-		for (unsigned int i = 0; i < 24; i++) {
+		for (int i = 0; i < 24; i++) {
 			T[0] = ROL((T[0] + ROL(delta[i % 4], i)), 1);
 			T[1] = ROL((T[1] + ROL(delta[i % 4], i + 1)), 3);
 			T[2] = ROL((T[2] + ROL(delta[i % 4], i + 2)), 6);
@@ -92,7 +91,7 @@ void enc_key_schedule(unsigned char* k, unsigned int* rk, unsigned int len) {
 	else if (len == 192) {
 		unsigned int T[6] = { 0x00, };
 		memcpy(T, k, 24);
-		for (int i = 0; i < 28; i++) {
+		for (unsigned int i = 0; i < 28; i++) {
 			T[0] = ROL((T[0] + ROL(delta[i % 6], i)), 1);
 			T[1] = ROL((T[1] + ROL(delta[i % 6], i + 1)), 3);
 			T[2] = ROL((T[2] + ROL(delta[i % 6], i + 2)), 6);
