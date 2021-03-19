@@ -141,9 +141,13 @@
   <ItemGroup>
     <ClCompile Include="lea.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="mode_of_operation.c" />
+    <ClCompile Include="padding.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lea.h" />
+    <ClInclude Include="mode_of_operation.h" />
+    <ClInclude Include="padding.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

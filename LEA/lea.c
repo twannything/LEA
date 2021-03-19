@@ -48,10 +48,10 @@ void dec_lea(unsigned char* p, unsigned char* c, unsigned int* rk, unsigned int 
 
 	memcpy(x, c, 16);
 	for (int i = 0; i < nr; i++) {
-		round_dec(tmp, x, rk, i);
+		round_dec(tmp, x, rk+(6*(nr-1))-(6*i), i);
 		memcpy(x, tmp, 16);
 	}
-	memcpy(c, x, 16);
+	memcpy(p, x, 16);
 }
 
 
@@ -63,10 +63,11 @@ void round_enc(unsigned int* y, unsigned int* x, unsigned int* rk, unsigned int 
 }
 
 void round_dec(unsigned int* y, unsigned int* x, unsigned int* rk, unsigned int i) {
-		*(y) = *(x + 3);
-		*(y + 1) = (ROR(*x, 9) - (*(y) ^ *rk)) ^ *(rk + 1);
-		*(y + 2) = (ROL(*(x + 1), 5) - *(y + 1) ^ *(rk + 2)) ^ *(rk + 3);
-		*(y + 3) = (ROL(*(x + 2), 3) - *(y + 2) ^ *(rk + 4)) ^ *(rk + 5);
+	
+	*(y) = *(x + 3);
+	*(y + 1) = (ROR(*x, 9) - (*(y) ^ *rk)) ^ *(rk + 1);
+	*(y + 2) = (ROL(*(x + 1), 5) - (*(y + 1) ^ *(rk + 2))) ^ *(rk + 3);
+	*(y + 3) = (ROL(*(x + 2), 3) - (*(y + 2) ^ *(rk + 4))) ^ *(rk + 5);
 }
 
 
@@ -137,12 +138,12 @@ void dec_key_schedule(unsigned char* k, unsigned int* rk, unsigned int len) {
 			T[1] = ROL(T[1] + ROL(delta[i % 4], i + 1), 3);
 			T[2] = ROL(T[2] + ROL(delta[i % 4], i + 2), 6);
 			T[3] = ROL(T[3] + ROL(delta[i % 4], i + 3), 11);
-			*(rk + 23 - (i * 6) + 0) = T[0];
-			*(rk + 23 - (i * 6) + 1) = T[1];
-			*(rk + 23 - (i * 6) + 2) = T[2];
-			*(rk + 23 - (i * 6) + 3) = T[1];
-			*(rk + 23 - (i * 6) + 4) = T[3];
-			*(rk + 23 - (i * 6) + 5) = T[1];
+			*(rk + (23*6) - (i * 6) + 0) = T[0];
+			*(rk + (23 * 6) - (i * 6) + 1) = T[1];
+			*(rk + (23 * 6) - (i * 6) + 2) = T[2];
+			*(rk + (23 * 6) - (i * 6) + 3) = T[1];
+			*(rk + (23 * 6) - (i * 6) + 4) = T[3];
+			*(rk + (23 * 6) - (i * 6) + 5) = T[1];
 		}
 	}
 	else if (len == 192) {
@@ -155,12 +156,12 @@ void dec_key_schedule(unsigned char* k, unsigned int* rk, unsigned int len) {
 			T[3] = ROL((T[3] + ROL(delta[i % 6], i + 3)), 11);
 			T[4] = ROL((T[4] + ROL(delta[i % 6], i + 4)), 13);
 			T[5] = ROL((T[5] + ROL(delta[i % 6], i + 5)), 17);
-			*(rk + 27 - (i * 6) + 0) = T[0];
-			*(rk + 27 - (i * 6) + 1) = T[1];
-			*(rk + 27 - (i * 6) + 2) = T[2];
-			*(rk + 27 - (i * 6) + 3) = T[3];
-			*(rk + 27 - (i * 6) + 4) = T[4];
-			*(rk + 27 - (i * 6) + 5) = T[5];
+			*(rk + (27*6) - (i * 6) + 0) = T[0];
+			*(rk + (27 * 6) - (i * 6) + 1) = T[1];
+			*(rk + (27 * 6) - (i * 6) + 2) = T[2];
+			*(rk + (27 * 6) - (i * 6) + 3) = T[3];
+			*(rk + (27 * 6) - (i * 6) + 4) = T[4];
+			*(rk + (27 * 6) - (i * 6) + 5) = T[5];
 		}
 	}
 	else if (len == 256) {
@@ -174,12 +175,12 @@ void dec_key_schedule(unsigned char* k, unsigned int* rk, unsigned int len) {
 			T[((6 * i) + 3) % 8] = ROL((T[((6 * i) + 3) % 8] + ROL(delta[i % 8], i + 3)), 11);
 			T[((6 * i) + 4) % 8] = ROL((T[((6 * i) + 4) % 8] + ROL(delta[i % 8], i + 4)), 13);
 			T[((6 * i) + 5) % 8] = ROL((T[((6 * i) + 5) % 8] + ROL(delta[i % 8], i + 5)), 17);
-			*(rk +31- (i * 6) + 0) = T[((6 * i)) % 8];
-			*(rk +31- (i * 6) + 1) = T[((6 * i) + 1) % 8];
-			*(rk +31- (i * 6) + 2) = T[((6 * i) + 2) % 8];
-			*(rk +31- (i * 6) + 3) = T[((6 * i) + 3) % 8];
-			*(rk +31- (i * 6) + 4) = T[((6 * i) + 4) % 8];
-			*(rk +31- (i * 6) + 5) = T[((6 * i) + 5) % 8];
+			*(rk +(31*6)- (i * 6) + 0) = T[((6 * i)) % 8];
+			*(rk + (31 * 6) - (i * 6) + 1) = T[((6 * i) + 1) % 8];
+			*(rk + (31 * 6) - (i * 6) + 2) = T[((6 * i) + 2) % 8];
+			*(rk + (31 * 6) - (i * 6) + 3) = T[((6 * i) + 3) % 8];
+			*(rk + (31 * 6) - (i * 6) + 4) = T[((6 * i) + 4) % 8];
+			*(rk + (31 * 6) - (i * 6) + 5) = T[((6 * i) + 5) % 8];
 		}
 	}
 	else printf("wrong key length!!!\n");
